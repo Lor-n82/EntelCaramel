@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">EntelCaramel</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="envoltorio">Elige el color del envoltorio</string>
+    <string name="caramelo">Elige el sabor del caramelo</string>
+    *Colores
+    <string name="colorrojo">Rojo</string>
+    <string name="colorverde">Verde</string>
+    <string name="colorazul">Azul</string>
+    <string name="colornaranja">Naranja</string>
+    <string name="colorvioleta">Violeta</string>
+    *Sabores
+    <string name="saborrojo">Rojo</string>
+    <string name="saborverde">Verde</string>
+    <string name="saborazul">Azul</string>
+    <string name="sabornaranja">Naranja</string>
+    <string name="saborvioleta">Violeta</string>
+
+    <array name="colores">
+        <item>@string/colorrojo</item>
+        <item>@string/colorverde</item>
+        <item>@string/colorazul</item>
+        <item>@string/colornaranja</item>
+        <item>@string/colorvioleta</item>
+    </array>
+
+    <array name="sabores">
+        <item>@string/saborrojo</item>
+        <item>@string/saborverde</item>
+        <item>@string/saborazul</item>
+        <item>@string/sabornaranja</item>
+        <item>@string/saborvioleta</item>
+    </array>
+
+</resources>
