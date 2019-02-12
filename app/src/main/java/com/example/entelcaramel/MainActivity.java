@@ -40,15 +40,13 @@ public class MainActivity extends AppCompatActivity
 
         txtEnvoltorio = findViewById(R.id.textViewEligeEnvoltorio);
         txtCaramelo = findViewById(R.id.textViewEligeCaramelo);
-        txt = findViewById(R.id.txt);
-
 
         String tipoFuente = "fuentes/tipo1.ttf";
         this.tipoLetra = Typeface.createFromAsset(getAssets(),tipoFuente);
-        txtEnvoltorio.setTypeface(tipoLetra);
-        txtCaramelo.setTypeface(tipoLetra);
-        txtEnvoltorio.setTextSize(24);
-        txtCaramelo.setTextSize(24);
+        //txtEnvoltorio.setTypeface(tipoLetra);
+         //txtCaramelo.setTypeface(tipoLetra);
+        txtEnvoltorio.setTextSize(20);
+        txtCaramelo.setTextSize(20);
 
 
 
@@ -57,12 +55,14 @@ public class MainActivity extends AppCompatActivity
         listaEnvoltorios = getResources().getStringArray(R.array.colores);
         ArrayAdapter<String> adapterEnvoltorio = new ArrayAdapter<String>(this,R.layout.spinner_layout,R.id.txt,listaEnvoltorios);
         miSpinnerEnvoltorio.setAdapter(adapterEnvoltorio);
+        miSpinnerEnvoltorio.getPopupBackground().setAlpha(111);
 
         //Spinner Caramelo
         miSpinnerCaramelo = findViewById(R.id.spinnerCaramelo);
         listaCaramelos = getResources().getStringArray(R.array.sabores);
         ArrayAdapter<String> adapterCaramelo = new ArrayAdapter<String>(this,R.layout.spinner_layout,R.id.txt,listaCaramelos);
         miSpinnerCaramelo.setAdapter(adapterCaramelo);
+        miSpinnerCaramelo.getPopupBackground().setAlpha(111);
 
 
 
@@ -70,19 +70,19 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
-                    case 0: Toast.makeText(getApplicationContext(),listaCaramelos[0].toString(),Toast.LENGTH_LONG).show();
-                    bola.setImageResource(R.drawable.bolaroja);
-                    break;
-                    case 1: Toast.makeText(getApplicationContext(),listaCaramelos[1].toString(),Toast.LENGTH_LONG).show();
+                    case 0:
+                        bola.setImageResource(R.drawable.bolaroja);
+                        break;
+                    case 1:
                         bola.setImageResource(R.drawable.bolaverde);
                         break;
-                    case 2: Toast.makeText(getApplicationContext(),listaCaramelos[2].toString(),Toast.LENGTH_LONG).show();
+                    case 2:
                         bola.setImageResource(R.drawable.bolaazul);
                         break;
-                    case 3: Toast.makeText(getApplicationContext(),listaCaramelos[3].toString(),Toast.LENGTH_LONG).show();
+                    case 3:
                         bola.setImageResource(R.drawable.bolanaranja);
                         break;
-                    case 4: Toast.makeText(getApplicationContext(),listaCaramelos[4].toString(),Toast.LENGTH_LONG).show();
+                    case 4:
                         bola.setImageResource(R.drawable.bolavioleta);
                         break;
                 }
@@ -100,15 +100,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
-                    case 0: Toast.makeText(getApplicationContext(),listaEnvoltorios[0].toString(),Toast.LENGTH_LONG).show();
+                    case 0:
                     break;
-                    case 1: Toast.makeText(getApplicationContext(),listaEnvoltorios[1].toString(),Toast.LENGTH_LONG).show();
+                    case 1:
                         break;
-                    case 2: Toast.makeText(getApplicationContext(),listaEnvoltorios[2].toString(),Toast.LENGTH_LONG).show();
+                    case 2:
                         break;
-                    case 3: Toast.makeText(getApplicationContext(),listaEnvoltorios[3].toString(),Toast.LENGTH_LONG).show();
+                    case 3:
                         break;
-                    case 4: Toast.makeText(getApplicationContext(),listaEnvoltorios[4].toString(),Toast.LENGTH_LONG).show();
+                    case 4:
                         break;
                 }
 
