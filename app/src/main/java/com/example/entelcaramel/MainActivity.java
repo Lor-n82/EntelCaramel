@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Spinner miSpinnerCaramelo, miSpinnerEnvoltorio;
-    private ImageView bola;
+    private ImageView bola, envoltorio;
     private MediaPlayer sonido;
     private Typeface tipoLetra;
     private TextView txtCaramelo, txtEnvoltorio, txt;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        /*FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference myRef = db.getReference(FireBaseReferences.REFERENCE);
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -57,9 +57,10 @@ public class MainActivity extends AppCompatActivity
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
         bola = findViewById(R.id.imageViewBola);
+        envoltorio = findViewById(R.id.imageViewEnvoltorio);
 
         txtEnvoltorio = findViewById(R.id.textViewEligeEnvoltorio);
         txtCaramelo = findViewById(R.id.textViewEligeCaramelo);
@@ -124,14 +125,19 @@ public class MainActivity extends AppCompatActivity
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
+                        envoltorio.setImageResource(R.drawable.envoltoriorojo);
                     break;
                     case 1:
+                        envoltorio.setImageResource(R.drawable.envoltorioverde);
                         break;
                     case 2:
+                        envoltorio.setImageResource(R.drawable.envoltorioazul);
                         break;
                     case 3:
+                        envoltorio.setImageResource(R.drawable.envoltorionaranja);
                         break;
                     case 4:
+                        envoltorio.setImageResource(R.drawable.envoltoriovioleta);
                         break;
                 }
 

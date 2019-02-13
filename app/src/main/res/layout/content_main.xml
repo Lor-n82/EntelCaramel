@@ -107,4 +107,16 @@
         app:layout_constraintVertical_bias="0.17000002"
         app:srcCompat="@drawable/bolaroja" />
 
+    <ImageView
+        android:id="@+id/imageViewEnvoltorio"
+        android:layout_width="200dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerEnvoltorio"
+        app:srcCompat="@drawable/envoltoriorojo" />
+
 </android.support.constraint.ConstraintLayout>
