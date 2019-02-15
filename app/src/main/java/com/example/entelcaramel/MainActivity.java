@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     private Typeface tipoLetra;
     private TextView txtCaramelo, txtEnvoltorio, txt;
     String [] listaCaramelos, listaEnvoltorios;
+    private static final String TIPOFUENTE= "fuentes/tipo1.ttf";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +66,7 @@ public class MainActivity extends AppCompatActivity
         txtEnvoltorio = findViewById(R.id.textViewEligeEnvoltorio);
         txtCaramelo = findViewById(R.id.textViewEligeCaramelo);
 
-        String tipoFuente = "fuentes/tipo1.ttf";
-        this.tipoLetra = Typeface.createFromAsset(getAssets(),tipoFuente);
+        this.tipoLetra = Typeface.createFromAsset(getAssets(),TIPOFUENTE);
         //txtEnvoltorio.setTypeface(tipoLetra);
          //txtCaramelo.setTypeface(tipoLetra);
         txtEnvoltorio.setTextSize(20);
