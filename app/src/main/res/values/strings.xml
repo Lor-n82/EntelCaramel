@@ -14,12 +14,15 @@
     <string name="colorazul">Azul</string>
     <string name="colornaranja">Naranja</string>
     <string name="colorvioleta">Violeta</string>
+    <string name="colorgris">Gris</string>
     *Sabores
     <string name="saborrojo">Rojo</string>
     <string name="saborverde">Verde</string>
     <string name="saborazul">Azul</string>
     <string name="sabornaranja">Naranja</string>
     <string name="saborvioleta">Violeta</string>
+    <string name="saborgris">Gris</string>
+
 
     <array name="colores">
         <item>@string/colorrojo</item>
@@ -27,6 +30,7 @@
         <item>@string/colorazul</item>
         <item>@string/colornaranja</item>
         <item>@string/colorvioleta</item>
+        <item>@string/colorgris</item>
     </array>
 
     <array name="sabores">
@@ -35,6 +39,7 @@
         <item>@string/saborazul</item>
         <item>@string/sabornaranja</item>
         <item>@string/saborvioleta</item>
+        <item>@string/saborgris</item>
     </array>
 
 </resources>

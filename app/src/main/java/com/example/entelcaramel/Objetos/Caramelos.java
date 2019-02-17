@@ -1,27 +1,34 @@
 package com.example.entelcaramel.Objetos;
 
-public class Caramelos {
+import java.io.Serializable;
 
-    String carameloId;
+public class Caramelos implements Serializable {
+
     String envoltorio;
     String sabor;
 
-    public Caramelos(String carameloId, String envoltorio, String sabor) {
-        this.carameloId = carameloId;
-        this.envoltorio = envoltorio;
-        this.sabor = sabor;
+    public Caramelos(){
+
     }
 
-    public String getCarameloId() {
-        return carameloId;
+    public Caramelos(String envoltorio, String sabor) {
+        this.envoltorio = envoltorio;
+        this.sabor = sabor;
     }
 
     public String getEnvoltorio() {
         return envoltorio;
     }
 
+    public void setEnvoltorio(String envoltorio) {
+        this.envoltorio = envoltorio;
+    }
+
     public String getSabor() {
         return sabor;
     }
 
+    public void setSabor(String sabor) {
+        this.sabor = sabor;
+    }
 }

@@ -1,10 +1,12 @@
 package com.example.entelcaramel;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,8 +24,11 @@ import android.widget.TextView;
 
 import com.example.entelcaramel.Objetos.Caramelos;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -90,6 +95,9 @@ public class MainActivity extends AppCompatActivity
                     case 4:
                         bola.setImageResource(R.drawable.bolavioleta);
                         break;
+                    case 5:
+                        bola.setImageResource(R.drawable.bolagris);
+                        break;
                 }
 
 
@@ -120,6 +128,9 @@ public class MainActivity extends AppCompatActivity
                     case 4:
                         envoltorio.setImageResource(R.drawable.envoltoriovioleta);
                         break;
+                    case 5:
+                        envoltorio.setImageResource(R.drawable.envoltoriogris);
+                        break;
                 }
 
 
@@ -146,12 +157,16 @@ public class MainActivity extends AppCompatActivity
 
                 //Enviamos a la DB
                 String newid = caramelosDB.push().getKey();
-                Caramelos caramelo = new Caramelos(newid,envoltorio,sabor);
+                Caramelos caramelo = new Caramelos(envoltorio,sabor);
                 caramelosDB.child(newid).setValue(caramelo);
 
-                Snackbar.make(view, "Ojo que viene !!!", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Datos enviados", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 sonido.start();
+
+                Intent intento = new Intent(getApplicationContext(), Estadisticas.class);
+                startActivity(intento);
+
             }
         });
 
@@ -221,5 +236,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 
 }
