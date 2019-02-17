@@ -3,7 +3,6 @@ package com.example.entelcaramel;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -20,14 +19,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.entelcaramel.Objetos.FireBaseReferences;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.entelcaramel.Objetos.Caramelos;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,26 +34,15 @@ public class MainActivity extends AppCompatActivity
     private Typeface tipoLetra;
     private TextView txtCaramelo, txtEnvoltorio, txt;
     String [] listaCaramelos, listaEnvoltorios;
+    DatabaseReference caramelosDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = db.getReference(FireBaseReferences.REFERENCE);
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
+        FirebaseApp.initializeApp(this);
+        caramelosDB = FirebaseDatabase.getInstance().getReference("caramelos");
 
         bola = findViewById(R.id.imageViewBola);
         envoltorio = findViewById(R.id.imageViewEnvoltorio);
@@ -72,8 +57,6 @@ public class MainActivity extends AppCompatActivity
         txtEnvoltorio.setTextSize(20);
         txtCaramelo.setTextSize(20);
 
-
-
         //Spinner Envoltorio
         miSpinnerEnvoltorio = findViewById(R.id.spinnerEnvoltorio);
         listaEnvoltorios = getResources().getStringArray(R.array.colores);
@@ -87,8 +70,6 @@ public class MainActivity extends AppCompatActivity
         ArrayAdapter<String> adapterCaramelo = new ArrayAdapter<String>(this,R.layout.spinner_layout,R.id.txt,listaCaramelos);
         miSpinnerCaramelo.setAdapter(adapterCaramelo);
         miSpinnerCaramelo.getPopupBackground().setAlpha(111);
-
-
 
         miSpinnerCaramelo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -159,6 +140,15 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Recojo el valor del item seleccionado en los Spinners
+                String envoltorio = miSpinnerEnvoltorio.getSelectedItem().toString();
+                String sabor = miSpinnerCaramelo.getSelectedItem().toString();
+
+                //Enviamos a la DB
+                String newid = caramelosDB.push().getKey();
+                Caramelos caramelo = new Caramelos(newid,envoltorio,sabor);
+                caramelosDB.child(newid).setValue(caramelo);
+
                 Snackbar.make(view, "Ojo que viene !!!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 sonido.start();
@@ -231,4 +221,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
