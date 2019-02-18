@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Caramelos implements Serializable {
 
-    String envoltorio;
-    String sabor;
+    private String envoltorio;
+    private String sabor;
 
-    public Caramelos(){
+    public Caramelos() {
 
     }
 

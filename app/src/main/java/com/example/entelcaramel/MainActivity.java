@@ -1,12 +1,10 @@
 package com.example.entelcaramel;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,11 +22,8 @@ import android.widget.TextView;
 
 import com.example.entelcaramel.Objetos.Caramelos;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,9 +31,6 @@ public class MainActivity extends AppCompatActivity
     private Spinner miSpinnerCaramelo, miSpinnerEnvoltorio;
     private ImageView bola, envoltorio;
     private MediaPlayer sonido;
-    private Typeface tipoLetra;
-    private TextView txtCaramelo, txtEnvoltorio, txt;
-    private static final String TIPOFUENTE= "fuentes/tipo1.ttf";
     String [] listaCaramelos, listaEnvoltorios;
     DatabaseReference caramelosDB;
 
@@ -46,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        TextView txtCaramelo, txtEnvoltorio;
         FirebaseApp.initializeApp(this);
         caramelosDB = FirebaseDatabase.getInstance().getReference("caramelos");
 
@@ -56,23 +48,20 @@ public class MainActivity extends AppCompatActivity
         txtEnvoltorio = findViewById(R.id.textViewEligeEnvoltorio);
         txtCaramelo = findViewById(R.id.textViewEligeCaramelo);
 
-        this.tipoLetra = Typeface.createFromAsset(getAssets(),TIPOFUENTE);
-        //txtEnvoltorio.setTypeface(tipoLetra);
-         //txtCaramelo.setTypeface(tipoLetra);
         txtEnvoltorio.setTextSize(20);
         txtCaramelo.setTextSize(20);
 
         //Spinner Envoltorio
         miSpinnerEnvoltorio = findViewById(R.id.spinnerEnvoltorio);
         listaEnvoltorios = getResources().getStringArray(R.array.colores);
-        ArrayAdapter<String> adapterEnvoltorio = new ArrayAdapter<String>(this,R.layout.spinner_layout,R.id.txt,listaEnvoltorios);
+        ArrayAdapter<String> adapterEnvoltorio = new ArrayAdapter<>(this,R.layout.spinner_layout,R.id.txt,listaEnvoltorios);
         miSpinnerEnvoltorio.setAdapter(adapterEnvoltorio);
         miSpinnerEnvoltorio.getPopupBackground().setAlpha(111);
 
         //Spinner Caramelo
         miSpinnerCaramelo = findViewById(R.id.spinnerCaramelo);
         listaCaramelos = getResources().getStringArray(R.array.sabores);
-        ArrayAdapter<String> adapterCaramelo = new ArrayAdapter<String>(this,R.layout.spinner_layout,R.id.txt,listaCaramelos);
+        ArrayAdapter<String> adapterCaramelo = new ArrayAdapter<>(this,R.layout.spinner_layout,R.id.txt,listaCaramelos);
         miSpinnerCaramelo.setAdapter(adapterCaramelo);
         miSpinnerCaramelo.getPopupBackground().setAlpha(111);
 
@@ -144,10 +133,10 @@ public class MainActivity extends AppCompatActivity
 
         sonido = MediaPlayer.create(getApplicationContext(),R.raw.dramatic);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,7 +147,9 @@ public class MainActivity extends AppCompatActivity
                 //Enviamos a la DB
                 String newid = caramelosDB.push().getKey();
                 Caramelos caramelo = new Caramelos(envoltorio,sabor);
-                caramelosDB.child(newid).setValue(caramelo);
+                if(newid!=null) {
+                    caramelosDB.child(newid).setValue(caramelo);
+                }
 
                 Snackbar.make(view, "Datos enviados", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -170,19 +161,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -232,7 +223,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
