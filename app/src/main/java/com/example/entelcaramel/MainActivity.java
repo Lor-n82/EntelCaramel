@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView txtCaramelo, txtEnvoltorio;
-        FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this) ;
         caramelosDB = FirebaseDatabase.getInstance().getReference("caramelos");
 
         bola = findViewById(R.id.imageViewBola);
