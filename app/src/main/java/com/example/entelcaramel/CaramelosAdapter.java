@@ -29,7 +29,7 @@ public class CaramelosAdapter extends RecyclerView.Adapter<CaramelosViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull CaramelosViewHolder holder, int i) {
-        switch (caramelos.get(i).getEnvoltorio()){
+        switch (caramelos.get(i).getSabor()){
             case "Rojo":
                 holder.envoltorio.setImageResource(R.drawable.bolaroja);
                 break;
@@ -49,7 +49,7 @@ public class CaramelosAdapter extends RecyclerView.Adapter<CaramelosViewHolder> 
                 holder.envoltorio.setImageResource(R.drawable.bolagris);
                 break;
         }
-        switch (caramelos.get(i).getSabor()){
+        switch (caramelos.get(i).getEnvoltorio()){
             case "Rojo":
                 holder.caramelo.setImageResource(R.drawable.envoltoriorojo);
                 break;

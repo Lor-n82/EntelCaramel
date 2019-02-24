@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
                 sonido.start();
 
-                Intent intento = new Intent(getApplicationContext(), Estadisticas.class);
+                Intent intento = new Intent(getApplicationContext(), Graficas.class);
                 startActivity(intento);
 
             }
